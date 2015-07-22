@@ -106,7 +106,7 @@ function handleNoGeolocation(errorFlag) {
   map.setCenter(options.position);
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(button, 'load', initialize);
       })
 
 
@@ -125,6 +125,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div class="name"></div>
     <div class="address"></div>
     <div id="map-canvas"></div>
+    <!--<input type="button" value="google it!">-->
     <div class="lol"></div>
   </body>
 </html>
