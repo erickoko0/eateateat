@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv = "Conttent.type" content = "text/html" charset = "utf-8">
+<div class="count"></div>
+<div class="num"></div>
+<div class="lat"></div>
+<div class="lng"></div>
+<div class="name"></div>
+<div class="address"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://sdk.sitcon.camp/GP-sdk.js"></script>
+<script src="http://sdk.sitcon.camp/openweathermap-sdk.js"></script>
+<script type="text/javascript">
+    
+    function useceil(min,max) 
+    {
+      return Math.ceil(Math.random()*(max-min+1)+min-1);
+    }
+</script>
+
+<script>
+    
+    $(document).ready(function() {
+    navigator.geolocation.getCurrentPosition(function (pos){
+          GP.getFoods(pos.coords.latitude+','+pos.coords.longitude, function (res){
+          //	GP.getFoods("23.4267773,120.449444", function (res){
+          	window.debug = res;
+            var min = 0;
+            var max = res.results.length;
+        var num = useceil(min,max);
+        console.log(num);
+        $(".count").text("搜尋結果總數："+res.results.length)
+        $(".num").text("第"+num+"筆")
+        $(".lat").text("經度："+res.results[num].geometry.location.lat)
+        $(".lng").text("緯度："+res.results[num].geometry.location.lng)
+        GP.getInfo(res.results[num].place_id, function (res){
+          $(".name").text("名稱："+res.result.name)
+          $(".address").text("地址："+res.result.formatted_address)
+       })
+      })
+
+      })
+      
+      
+    })
+  </script>
+</head>
+<body>
+
+</body>
+</html>
