@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>中午吃了嗎?</title>
+    <title>Sitcon good to eat</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
@@ -57,7 +57,10 @@
         x=res.results[num].geometry.location.lat;
         y=res.results[num].geometry.location.lng;
         console.log(x);
-
+        $( '#ref').click(function()
+    	{
+    		location.reload();
+    	});
         GP.getInfo(res.results[num].place_id, function (res){
 
           console.log(res);
@@ -125,6 +128,8 @@ google.maps.event.addDomListener(button, 'load', initialize);
     <div class="name"></div>
     <div class="address"></div>
     <div id="map-canvas"></div>
+    <button id="ref" >不滿意</button>
+    
     <!--<input type="button" value="google it!">-->
     <div class="lol"></div>
   </body>
